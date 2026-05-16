@@ -1,12 +1,12 @@
 import { useAuth } from "@clerk/expo";
-import { Redirect, Slot } from "expo-router";
+import { Slot } from "expo-router";
 
-export default function Index() {
-  const { isSignedIn, isLoaded } = useAuth();
+export default function RootGroupLayout() {
+  const { isLoaded } = useAuth();
 
   if (!isLoaded) return null;
 
-  if (isSignedIn) return <Redirect href="/(root)/(tabs)" />;
-
+  // Never Redirect to /(root)/(tabs) from here: this layout wraps (tabs), so a
+  // signed-in Redirect runs on every tab screen and causes "Maximum update depth exceeded".
   return <Slot />;
 }

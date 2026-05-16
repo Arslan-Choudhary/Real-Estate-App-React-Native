@@ -1,8 +1,11 @@
 import { useAuth } from "@clerk/expo";
 import { Redirect, Stack } from "expo-router";
+import { useMemo } from "react";
 
 export default function AuthRoutesLayout() {
   const { isSignedIn, isLoaded } = useAuth();
+
+  const screenOptions = useMemo(() => ({ headerShown: false }), []);
 
   if (!isLoaded) {
     return null;
@@ -12,5 +15,5 @@ export default function AuthRoutesLayout() {
     return <Redirect href={"/"} />;
   }
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return <Stack screenOptions={screenOptions} />;
 }
