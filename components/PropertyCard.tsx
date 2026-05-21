@@ -17,12 +17,12 @@ export default function PropertyCard({
   const router = useRouter();
   const { isSaved, saveLoading, toggleSave } = useSavedProperty(
     property.id,
-    onUnsave
+    onUnsave,
   );
 
   return (
     <TouchableOpacity
-      onPress={() => router.push(`/(root)/property/${property.id}`)}
+      onPress={() => router.push(`/property/${property.id}` as any)}
       className="flex-row bg-white rounded-2xl mb-4 overflow-hidden"
       style={{
         shadowColor: "#000",
